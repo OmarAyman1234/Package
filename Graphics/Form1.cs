@@ -48,10 +48,10 @@ namespace Graphics
             switch (algo)
             {
                 case "DDA":
-                    LineDDA(x1, y1, x2, y2);
+                    UseDDA(x1, y1, x2, y2);
                     break;
                 case "Bresenham":
-                    MessageBox.Show("Bresenham algorithm selected.");
+                    UseBresenham(x1, y1, x2, y2);
                     break;
                 case "Circle":
                     MessageBox.Show("Circle drawing algorithm selected.");
@@ -65,7 +65,7 @@ namespace Graphics
             }
         }
 
-        private void LineDDA(int x1, int y1, int x2, int y2)
+        private void UseDDA(int x1, int y1, int x2, int y2)
         {
             var g = drawPanel.CreateGraphics();
             Brush pixelBrush = Brushes.Red;
@@ -95,5 +95,57 @@ namespace Graphics
                 g.FillRectangle(pixelBrush, (int)Math.Round(x), (int)Math.Round(y), 5, 5);
             }
         }
+        private void UseBresenham(int x0, int y0, int xEnd, int yEnd)
+        {
+            var g = drawPanel.CreateGraphics();
+            Brush pixelBrush = Brushes.Red;
+
+            int dx = Math.Abs(xEnd - x0);
+            int dy = Math.Abs(yEnd - y0);
+
+            // p is the decision parameter
+            int p = 2 * dy - dx;
+            int twoDy = 2 * dy;
+            int twoDyMinusDx = 2 * (dy - dx);
+
+            int x, y, xLimit;
+
+            /* Determine which endpoint to use as start position 
+               based on the logic from your image */
+            if (x0 > xEnd)
+            {
+                x = xEnd;
+                y = yEnd;
+                xLimit = x0;
+            }
+            else
+            {
+                x = x0;
+                y = y0;
+                xLimit = xEnd;
+            }
+
+            // Draw the first point
+            g.FillRectangle(pixelBrush, x, y, 5, 5);
+
+            while (x < xLimit)
+            {
+                x++;
+
+                if (p < 0)
+                {
+                    p += twoDy;
+                }
+                else
+                {
+                    y++;
+                    p += twoDyMinusDx;
+                }
+
+                // Draw the next point
+                g.FillRectangle(pixelBrush, x, y, 5, 5);
+            }
+        }
+
     }
 }
