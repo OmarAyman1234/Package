@@ -1,4 +1,4 @@
-﻿namespace Graphics
+﻿namespace GraphicsProj
 {
     partial class Form1
     {
@@ -39,19 +39,21 @@
             x2Box = new TextBox();
             label4 = new Label();
             y2Box = new TextBox();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // drawPanel
             // 
             drawPanel.BackColor = SystemColors.GradientInactiveCaption;
-            drawPanel.Location = new Point(238, 33);
+            drawPanel.Location = new Point(266, 33);
             drawPanel.Name = "drawPanel";
-            drawPanel.Size = new Size(716, 458);
+            drawPanel.Size = new Size(1058, 239);
             drawPanel.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(796, 508);
+            button1.Location = new Point(1212, 613);
             button1.Name = "button1";
             button1.Size = new Size(112, 34);
             button1.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             algosComboBox.FormattingEnabled = true;
             algosComboBox.Items.AddRange(new object[] { "DDA", "Bresenham", "Circle", "Ellipse" });
-            algosComboBox.Location = new Point(570, 510);
+            algosComboBox.Location = new Point(997, 615);
             algosComboBox.Name = "algosComboBox";
             algosComboBox.Size = new Size(182, 33);
             algosComboBox.TabIndex = 2;
@@ -71,7 +73,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 87);
+            label1.Location = new Point(12, 39);
             label1.Name = "label1";
             label1.Size = new Size(33, 25);
             label1.TabIndex = 3;
@@ -79,7 +81,7 @@
             // 
             // x1Box
             // 
-            x1Box.Location = new Point(77, 84);
+            x1Box.Location = new Point(77, 36);
             x1Box.Name = "x1Box";
             x1Box.Size = new Size(150, 31);
             x1Box.TabIndex = 4;
@@ -87,7 +89,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 154);
+            label2.Location = new Point(12, 106);
             label2.Name = "label2";
             label2.Size = new Size(32, 25);
             label2.TabIndex = 5;
@@ -95,7 +97,7 @@
             // 
             // y1Box
             // 
-            y1Box.Location = new Point(77, 148);
+            y1Box.Location = new Point(77, 100);
             y1Box.Name = "y1Box";
             y1Box.Size = new Size(150, 31);
             y1Box.TabIndex = 6;
@@ -103,7 +105,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 222);
+            label3.Location = new Point(12, 174);
             label3.Name = "label3";
             label3.Size = new Size(33, 25);
             label3.TabIndex = 7;
@@ -111,7 +113,7 @@
             // 
             // x2Box
             // 
-            x2Box.Location = new Point(77, 216);
+            x2Box.Location = new Point(77, 168);
             x2Box.Name = "x2Box";
             x2Box.Size = new Size(150, 31);
             x2Box.TabIndex = 8;
@@ -119,7 +121,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 295);
+            label4.Location = new Point(12, 247);
             label4.Name = "label4";
             label4.Size = new Size(32, 25);
             label4.TabIndex = 9;
@@ -127,16 +129,26 @@
             // 
             // y2Box
             // 
-            y2Box.Location = new Point(77, 289);
+            y2Box.Location = new Point(77, 241);
             y2Box.Name = "y2Box";
             y2Box.Size = new Size(150, 31);
             y2Box.TabIndex = 10;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(12, 294);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(1312, 313);
+            dataGridView1.TabIndex = 11;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(966, 554);
+            ClientSize = new Size(1336, 659);
+            Controls.Add(dataGridView1);
             Controls.Add(y2Box);
             Controls.Add(label4);
             Controls.Add(x2Box);
@@ -150,6 +162,7 @@
             Controls.Add(drawPanel);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -167,5 +180,6 @@
         private TextBox x2Box;
         private Label label4;
         private TextBox y2Box;
+        private DataGridView dataGridView1;
     }
 }

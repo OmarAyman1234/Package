@@ -1,4 +1,4 @@
-namespace Graphics
+namespace GraphicsProj
 {
     internal static class Program
     {

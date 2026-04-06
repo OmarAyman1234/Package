@@ -65,36 +65,6 @@ namespace Graphics
             }
         }
 
-        private void UseDDA(int x1, int y1, int x2, int y2)
-        {
-            var g = drawPanel.CreateGraphics();
-            Brush pixelBrush = Brushes.Red;
-
-            int dx = x2 - x1;
-            int dy = y2 - y1;
-            int steps;
-            float xIncrement, yIncrement, x = x1, y = y1;
-
-            // Determine the number of steps
-            if (Math.Abs(dx) > Math.Abs(dy))
-                steps = Math.Abs(dx);
-            else
-                steps = Math.Abs(dy);
-
-            xIncrement = (float)dx / (float)steps;
-            yIncrement = (float)dy / (float)steps;
-
-            // Draw the first point
-            g.FillRectangle(pixelBrush, (int)Math.Round(x), (int)Math.Round(y), 5, 5);
-
-            for (int k = 0; k < steps; k++)
-            {
-                x += xIncrement;
-                y += yIncrement;
-                // FillRectangle with 1x1 size simulates SetPixel
-                g.FillRectangle(pixelBrush, (int)Math.Round(x), (int)Math.Round(y), 5, 5);
-            }
-        }
         private void UseBresenham(int x0, int y0, int xEnd, int yEnd)
         {
             var g = drawPanel.CreateGraphics();
