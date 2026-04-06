@@ -69,6 +69,7 @@
             algosComboBox.Name = "algosComboBox";
             algosComboBox.Size = new Size(182, 33);
             algosComboBox.TabIndex = 2;
+            algosComboBox.SelectedIndexChanged += algosComboBox_SelectedIndexChanged;
             // 
             // label1
             // 

@@ -18,6 +18,24 @@ namespace GraphicsProj
                     algosComboBox.SelectedIndex = 0;
                 }
 
+                if (algosComboBox.SelectedIndex == 2) // Circle
+                {
+                    if (string.IsNullOrWhiteSpace(x1Box.Text) || string.IsNullOrWhiteSpace(y1Box.Text) ||
+                        string.IsNullOrWhiteSpace(x2Box.Text))
+                    {
+                        throw new ArgumentException("Please fill in all fields for Circle (X1, Y1, Radius).");
+                    }
+                    if (!int.TryParse(x1Box.Text, out int xCenter))
+                        throw new ArgumentException("X1 must be an integer");
+                    if (!int.TryParse(y1Box.Text, out int yCenter))
+                        throw new ArgumentException("Y1 must be an integer");
+                    if (!int.TryParse(x2Box.Text, out int radius))
+                        throw new ArgumentException("Radius must be an integer");
+                    Draw(algosComboBox.SelectedItem.ToString(), xCenter, yCenter, radius, 0); // Pass 0 for unused Y2
+
+                    return; // Exit after drawing circle
+                }
+
                 if (string.IsNullOrWhiteSpace(x1Box.Text) || string.IsNullOrWhiteSpace(y1Box.Text) ||
                     string.IsNullOrWhiteSpace(x2Box.Text) || string.IsNullOrWhiteSpace(y2Box.Text))
                 {
@@ -59,7 +77,12 @@ namespace GraphicsProj
                         results = Bresenham.Draw(x1, y1, x2, y2, g);
                         break;
                     case "Circle":
-                        MessageBox.Show("Circle drawing algorithm selected.");
+                        int radius = x2;
+
+                        // Calculate the mathematical center of the panel
+                        int centerX = drawPanel.Width / 2;
+                        int centerY = drawPanel.Height / 2;
+                        results = Circle.Draw(centerX, centerY, radius, g); // Here x2 is used as radius
                         break;
                     case "Ellipse":
                         MessageBox.Show("Ellipse drawing algorithm selected.");
@@ -73,6 +96,28 @@ namespace GraphicsProj
                     dataGridView1.DataSource = null;
                     dataGridView1.DataSource = results; // Auto-generates columns based on the class used
                 }
+            }
+        }
+
+        private void algosComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selected = algosComboBox.SelectedItem.ToString();
+
+            if (selected == "Circle")
+            {
+                // 1. Rename X2 label to Radius
+                label3.Text = "Radius";
+
+                // 2. Hide Y2 label and textbox
+                label4.Visible = false;
+                y2Box.Visible = false;
+            }
+            else
+            {
+                // Reset for Line algorithms (DDA/Bresenham)
+                label3.Text = "X2";
+                label4.Visible = true;
+                y2Box.Visible = true;
             }
         }
     }
