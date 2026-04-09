@@ -85,7 +85,11 @@ namespace GraphicsProj
                         results = Circle.Draw(centerX, centerY, radius, g); // Here x2 is used as radius
                         break;
                     case "Ellipse":
-                        MessageBox.Show("Ellipse drawing algorithm selected.");
+                        int rx = x2; // Using X2 box for Rx
+                        int ry = y2; // Using Y2 box for Ry
+                        int eCenterX = drawPanel.Width / 2;
+                        int eCenterY = drawPanel.Height / 2;
+                        results = Ellipse.Draw(eCenterX, eCenterY, rx, ry, g);
                         break;
                     default:
                         MessageBox.Show("Unknown algorithm selected.");

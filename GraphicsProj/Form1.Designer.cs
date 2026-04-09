@@ -40,6 +40,7 @@
             label4 = new Label();
             y2Box = new TextBox();
             dataGridView1 = new DataGridView();
+            geoButton = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -144,11 +145,21 @@
             dataGridView1.Size = new Size(1312, 313);
             dataGridView1.TabIndex = 11;
             // 
+            // geoButton
+            // 
+            geoButton.Location = new Point(12, 617);
+            geoButton.Name = "geoButton";
+            geoButton.Size = new Size(330, 34);
+            geoButton.TabIndex = 12;
+            geoButton.Text = "2D Geometric Transformations";
+            geoButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1336, 659);
+            Controls.Add(geoButton);
             Controls.Add(dataGridView1);
             Controls.Add(y2Box);
             Controls.Add(label4);
@@ -182,5 +193,6 @@
         private Label label4;
         private TextBox y2Box;
         private DataGridView dataGridView1;
+        private Button geoButton;
     }
 }
