@@ -153,6 +153,7 @@
             geoButton.TabIndex = 12;
             geoButton.Text = "2D Geometric Transformations";
             geoButton.UseVisualStyleBackColor = true;
+            geoButton.Click += geoButton_Click;
             // 
             // Form1
             // 

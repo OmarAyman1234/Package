@@ -124,5 +124,12 @@ namespace GraphicsProj
                 y2Box.Visible = true;
             }
         }
+
+        private void geoButton_Click(object sender, EventArgs e)
+        {
+            TransformForm transform = new TransformForm();
+
+            transform.Show();
+        }
     }
 }
