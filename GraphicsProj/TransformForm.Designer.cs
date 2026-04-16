@@ -199,8 +199,8 @@
             // yShSlider
             // 
             yShSlider.Location = new Point(201, 457);
-            yShSlider.Maximum = 5;
-            yShSlider.Minimum = -5;
+            yShSlider.Maximum = 20;
+            yShSlider.Minimum = -20;
             yShSlider.Name = "yShSlider";
             yShSlider.Size = new Size(156, 69);
             yShSlider.TabIndex = 15;
@@ -208,8 +208,8 @@
             // xShSlider
             // 
             xShSlider.Location = new Point(23, 457);
-            xShSlider.Maximum = 5;
-            xShSlider.Minimum = -5;
+            xShSlider.Maximum = 20;
+            xShSlider.Minimum = -20;
             xShSlider.Name = "xShSlider";
             xShSlider.Size = new Size(156, 69);
             xShSlider.TabIndex = 14;

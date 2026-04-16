@@ -45,54 +45,36 @@ namespace GraphicsProj
         {
             if (originalImage == null) return;
 
-            // 1. Get Values
-            // Logic to handle the "Snap" from 0.1 to -1
-            double sx;
-            if (xScSlider.Value <= 0)
-            {
-                sx = -1.0; // Force reflection if slider goes below 0.1 equivalent
-            }
-            else
-            {
-                sx = xScSlider.Value / 10.0; // Standard 0.1 to 2.0 range
-            }
-
-            double sy;
-            if (yScSlider.Value <= 0)
-            {
-                sy = -1.0;
-            }
-            else
-            {
-                sy = yScSlider.Value / 10.0;
-            }
+            double sx = xScSlider.Value <= 0 ? -1.0 : xScSlider.Value / 10.0;
+            double sy = yScSlider.Value <= 0 ? -1.0 : yScSlider.Value / 10.0;
             double rad = rotSlider.Value * Math.PI / 180.0;
-            double shx = -xShSlider.Value / 10.0;
-            double shy = -yShSlider.Value / 10.0;
+            double shx = xShSlider.Value / 10.0;
+            double shy = yShSlider.Value / 10.0;
             int dx = xTrSlider.Value;
-            int dy = yTrSlider.Value;
+            int dy = - yTrSlider.Value;
 
             double cx = originalImage.Width / 2.0;
             double cy = originalImage.Height / 2.0;
 
-            // 2. Center transformation (move to origin)
             double[,] toCenter = { { 1, 0, -cx }, { 0, 1, -cy }, { 0, 0, 1 } };
+            double[,] fromCenter = { { 1, 0, cx + dx }, { 0, 1, cy - dy }, { 0, 0, 1 } };
 
-            // 3. Transformations around center
             double[,] scale = { { sx, 0, 0 }, { 0, sy, 0 }, { 0, 0, 1 } };
-            double[,] rot = { { Math.Cos(rad), -Math.Sin(rad), 0 }, { Math.Sin(rad), Math.Cos(rad), 0 }, { 0, 0, 1 } };
-            double[,] shear = { { 1, shx, 0 }, { shy, 1, 0 }, { 0, 0, 1 } };
+            double[,] rot = { { Math.Cos(rad), -Math.Sin(rad), 0 },
+                        { Math.Sin(rad),  Math.Cos(rad), 0 },
+                        { 0, 0, 1 } };
 
-            // 4. Move back from center with translation
-            double[,] fromCenter = { { 1, 0, cx + dx }, { 0, 1, cy + dy }, { 0, 0, 1 } };
+            // Pure shear matrices — no pivot needed
+            double[,] xShear = { { 1, -shx, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+            double[,] yShear = { { 1, 0, 0 }, { shy, 1, 0 }, { 0, 0, 1 } };
 
-            // 5. Combine in correct order: fromCenter * shear * rot * scale * toCenter
-            double[,] combined = MultiplyMatrices(fromCenter, shear);
+            // Order: fromCenter * xShear * yShear * rot * scale * toCenter
+            double[,] combined = MultiplyMatrices(fromCenter, xShear);
+            combined = MultiplyMatrices(combined, yShear);
             combined = MultiplyMatrices(combined, rot);
             combined = MultiplyMatrices(combined, scale);
             combined = MultiplyMatrices(combined, toCenter);
 
-            // 6. Apply
             Bitmap transformedImage = ApplyMatrix(originalImage, combined);
 
             if (pictureBox.Image != null && pictureBox.Image != originalImage)
